@@ -34,9 +34,12 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import BleManager from 'react-native-ble-manager';
-//
 
-
+import {useState, useEffect} from 'react'
+import {
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 
 
 type SectionProps = PropsWithChildren<{
@@ -90,30 +93,32 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Text  style={{
+                fontSize: 30,
+                textAlign: 'center',
+                color: isDarkMode ? Colors.white : Colors.black,
+              }}>React Native BLE Manager
+          </Text>   
+
+          <TouchableOpacity activeOpacity={0.5} style={styles.buttonStyle}>
+            <Text style={styles.buttonTextStyle}>Scan Bluetooth Devices </Text>
+          </TouchableOpacity>
+ 
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-}
+  );//return close bracket
+}//app component close bracket
 
+
+const windowHeight = Dimensions.get('window').height;
+
+//making my stylesheet
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  mainBody: {
+    flex: 1,
+    justifyContent: 'center',
+    height: windowHeight,
   },
   sectionTitle: {
     fontSize: 24,
@@ -126,6 +131,23 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  buttonStyle: {
+    backgroundColor: '#307ecc',
+    borderWidth: 0,
+    color: '#FFFFFF',
+    borderColor: '#307ecc',
+    height: 40,
+    alignItems: 'center',
+    borderRadius: 30,
+    marginLeft: 35,
+    marginRight: 35,
+    marginTop: 15,
+  },
+  buttonTextStyle: {
+    color: '#FFFFFF',
+    paddingVertical: 10,
+    fontSize: 16,
   },
 });
 
